@@ -87,6 +87,10 @@ def main():
             report_lines.append(f"取得エラー: {e}")
             continue
 
+        if os.environ.get("DEBUG_RAW") and raw_items:
+            print(f"DEBUG raw_items count for @{username}: {len(raw_items)}", file=sys.stderr)
+            print(f"DEBUG raw_items[0] for @{username}:", json.dumps(raw_items[0], ensure_ascii=False)[:3000], file=sys.stderr)
+
         posts = [normalize_post(p) for p in raw_items if p]
         all_raw[username] = posts
 
