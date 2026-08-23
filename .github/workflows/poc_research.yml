@@ -12,7 +12,7 @@ on:
       - claude/instagram-analysis-feasibility-llgevb
     paths:
       - "ig-competitor-analysis/research_hashtags.txt"
-      - "ig-competitor-analysis/.github/workflows/poc_research.yml"
+      - ".github/workflows/poc_research.yml"
 
 jobs:
   research:
