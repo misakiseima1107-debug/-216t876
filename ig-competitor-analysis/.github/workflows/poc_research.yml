@@ -1,0 +1,43 @@
+name: PoC Hashtag Research
+
+on:
+  workflow_dispatch:
+    inputs:
+      hashtags:
+        description: "カンマ区切りのハッシュタグ(#なし。例: 女子大生,GRWM,美容ルーティン)"
+        required: true
+        default: "女子大生,GRWM"
+
+jobs:
+  research:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ig-competitor-analysis
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run hashtag research PoC
+        env:
+          APIFY_API_TOKEN: ${{ secrets.APIFY_API_TOKEN }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          RESEARCH_HASHTAGS: ${{ inputs.hashtags }}
+        run: python3 src/pipeline/poc_hashtag_research.py
+
+      - name: Print report to logs
+        run: cat reports/poc_research_report.md
+
+      - name: Upload report artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: poc-research-report
+          path: |
+            ig-competitor-analysis/reports/poc_research_report.md
+            ig-competitor-analysis/reports/poc_research_raw.json
