@@ -7,6 +7,12 @@ on:
         description: "カンマ区切りのハッシュタグ(#なし。例: 女子大生,GRWM,美容ルーティン)"
         required: true
         default: "女子大生,GRWM"
+  push:
+    branches:
+      - claude/instagram-analysis-feasibility-llgevb
+    paths:
+      - "ig-competitor-analysis/research_hashtags.txt"
+      - "ig-competitor-analysis/.github/workflows/poc_research.yml"
 
 jobs:
   research:
@@ -28,8 +34,12 @@ jobs:
         env:
           APIFY_API_TOKEN: ${{ secrets.APIFY_API_TOKEN }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-          RESEARCH_HASHTAGS: ${{ inputs.hashtags }}
-        run: python3 src/pipeline/poc_hashtag_research.py
+          RESEARCH_HASHTAGS: ${{ inputs.hashtags || '' }}
+        run: |
+          if [ -z "$RESEARCH_HASHTAGS" ]; then
+            export RESEARCH_HASHTAGS=$(cat research_hashtags.txt | tr -d '\n')
+          fi
+          python3 src/pipeline/poc_hashtag_research.py
 
       - name: Print report to logs
         run: cat reports/poc_research_report.md
