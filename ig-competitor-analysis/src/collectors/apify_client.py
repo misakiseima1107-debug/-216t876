@@ -30,18 +30,19 @@ class ApifyClient:
 
     def search_by_hashtags(self, hashtags: list[str], results_per_hashtag: int = 15) -> list[dict]:
         """ハッシュタグ単位でReels/投稿を検索取得する。"""
+        direct_urls = [f"https://www.instagram.com/explore/tags/{tag}/" for tag in hashtags]
         run_input = {
-            "hashtags": hashtags,
+            "directUrls": direct_urls,
             "resultsType": "posts",
             "resultsLimit": results_per_hashtag,
-            "searchType": "hashtag",
         }
         return self.run_actor_sync(INSTAGRAM_SCRAPER_ACTOR, run_input)
 
     def fetch_profile_posts(self, usernames: list[str], results_per_profile: int = 12) -> list[dict]:
         """ユーザー名指定で投稿を取得する(競合登録済みアカウント用)。"""
+        direct_urls = [f"https://www.instagram.com/{u}/" for u in usernames]
         run_input = {
-            "usernames": usernames,
+            "directUrls": direct_urls,
             "resultsType": "posts",
             "resultsLimit": results_per_profile,
         }
