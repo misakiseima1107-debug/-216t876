@@ -11,6 +11,10 @@ on:
         description: "カンマ区切りのInstagramユーザー名(@なし)"
         required: false
         default: ""
+      tiktok_hashtags:
+        description: "カンマ区切りのTikTokハッシュタグ(#なし)"
+        required: false
+        default: ""
   push:
     branches:
       - claude/instagram-analysis-feasibility-llgevb
@@ -60,12 +64,24 @@ jobs:
           fi
           python3 src/pipeline/poc_account_research.py
 
+      - name: Run TikTok hashtag research PoC
+        if: ${{ inputs.tiktok_hashtags != '' }}
+        continue-on-error: true
+        env:
+          APIFY_API_TOKEN: ${{ secrets.APIFY_API_TOKEN }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          TIKTOK_HASHTAGS: ${{ inputs.tiktok_hashtags }}
+          DEBUG_RAW: "1"
+        run: python3 src/pipeline/poc_tiktok_research.py
+
       - name: Print reports to logs
         run: |
           echo "===== HASHTAG REPORT ====="
           cat reports/poc_research_report.md 2>/dev/null || echo "(no hashtag report)"
           echo "===== ACCOUNT REPORT ====="
           cat reports/poc_account_report.md 2>/dev/null || echo "(no account report)"
+          echo "===== TIKTOK REPORT ====="
+          cat reports/poc_tiktok_report.md 2>/dev/null || echo "(no tiktok report)"
 
       - name: Upload report artifact
         uses: actions/upload-artifact@v4
@@ -76,4 +92,6 @@ jobs:
             ig-competitor-analysis/reports/poc_research_raw.json
             ig-competitor-analysis/reports/poc_account_report.md
             ig-competitor-analysis/reports/poc_account_raw.json
+            ig-competitor-analysis/reports/poc_tiktok_report.md
+            ig-competitor-analysis/reports/poc_tiktok_raw.json
           if-no-files-found: ignore

@@ -10,6 +10,7 @@ import requests
 
 APIFY_BASE_URL = "https://api.apify.com/v2"
 INSTAGRAM_SCRAPER_ACTOR = "apify~instagram-scraper"
+TIKTOK_SCRAPER_ACTOR = "clockworks~tiktok-scraper"
 
 
 class ApifyClient:
@@ -47,3 +48,19 @@ class ApifyClient:
             "resultsLimit": results_per_profile,
         }
         return self.run_actor_sync(INSTAGRAM_SCRAPER_ACTOR, run_input)
+
+    def tiktok_search_by_hashtags(self, hashtags: list[str], results_per_hashtag: int = 15) -> list[dict]:
+        """TikTokのハッシュタグ単位で動画を検索取得する。"""
+        run_input = {
+            "hashtags": hashtags,
+            "resultsPerPage": results_per_hashtag,
+        }
+        return self.run_actor_sync(TIKTOK_SCRAPER_ACTOR, run_input)
+
+    def tiktok_fetch_profile_posts(self, usernames: list[str], results_per_profile: int = 12) -> list[dict]:
+        """TikTokのユーザー名指定で動画を取得する。"""
+        run_input = {
+            "profiles": usernames,
+            "resultsPerPage": results_per_profile,
+        }
+        return self.run_actor_sync(TIKTOK_SCRAPER_ACTOR, run_input)
