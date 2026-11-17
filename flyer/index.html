@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>Realee × 就活ランチ フライヤー</title>
+<style>
+@font-face{font-family:'Noto';font-weight:500;src:url(assets/noto-500.ttf)}
+@font-face{font-family:'Noto';font-weight:700;src:url(assets/noto-700.ttf)}
+@font-face{font-family:'Noto';font-weight:900;src:url(assets/noto-900.ttf)}
+:root{--navy:#1b2a5e;--blue:#2f8fe0;--sky:#e8f3fc;--orange:#e08a3c;--ink:#1b2a5e}
+@page{size:210mm 297mm;margin:0}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#fff;font-family:'Noto','Noto Sans JP',sans-serif;color:var(--ink)}
+.page{width:794px;height:1123px;padding:34px 44px 0;position:relative;overflow:hidden;background:#fff}
+.top{display:flex;justify-content:space-between;align-items:center}
+.top img{height:36px}
+.pill{border:2px solid var(--navy);border-radius:99px;padding:5px 18px;font-weight:900;font-size:14px}
+h1{font-weight:900;font-size:44px;line-height:1.12;margin-top:8px;letter-spacing:-1px}
+h1 em{font-style:normal;color:var(--orange)}
+.lead{font-weight:700;font-size:16px;color:#4b587f;margin-top:4px}
+
+/* Realee hero */
+.rl{margin-top:12px;border-radius:26px;background:linear-gradient(135deg,#1b2a5e 0%,#24408f 60%,#2f8fe0 130%);color:#fff;padding:18px 28px 16px;position:relative;overflow:hidden;height:512px}
+.rl:before{content:"";position:absolute;right:-70px;top:-70px;width:340px;height:340px;border-radius:50%;background:rgba(255,255,255,.07)}
+.rl-tag{display:inline-flex;align-items:center;gap:10px;background:#fff;border-radius:12px;padding:6px 14px}
+.rl-tag img{height:30px;display:block}
+.rl-tag span{font-size:12px;font-weight:900;color:var(--blue)}
+.rl h2{font-weight:900;font-size:36px;line-height:1.18;margin-top:10px;letter-spacing:-.5px;position:relative}
+.rl h2 b{color:#ffd23f}
+.rl p.sub{font-size:14px;font-weight:500;opacity:.9;margin-top:8px}
+.rl-body{display:flex;gap:10px;margin-top:12px;position:relative}
+.pts{display:flex;flex-direction:column;gap:7px}
+.pt{background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.25);border-radius:14px;padding:7px 12px;display:flex;gap:10px;align-items:center}
+.pt i{font-style:normal;flex:none;width:34px;height:34px;border-radius:50%;background:#ffd23f;color:var(--navy);font-weight:900;font-size:17px;display:grid;place-items:center}
+.pt b{display:block;font-size:15.5px;font-weight:900}
+.pt small{font-size:11px;font-weight:500;opacity:.88}
+.stats{display:flex;gap:8px;margin-top:10px}
+.stat{flex:1;background:#fff;color:var(--navy);border-radius:14px;padding:8px 6px 6px;text-align:center}
+.stat small{display:block;font-size:11px;font-weight:700;color:#5d6a92}
+.stat b{font-size:34px;font-weight:900;line-height:1.05;color:var(--blue);letter-spacing:-1px}
+.stat b u{text-decoration:none;font-size:16px;margin-left:2px;color:var(--navy)}
+.phones{flex:1;position:relative;height:300px;margin-left:-4px}
+.ph{position:absolute;width:104px;border-radius:16px;overflow:hidden;border:4px solid #fff;box-shadow:0 14px 26px rgba(0,0,0,.35)}
+.ph img{display:block;width:100%}
+.ph.a{left:0;top:40px;transform:rotate(-7deg)}
+.ph.b{left:66px;top:6px;transform:scale(1.12);z-index:2}
+.ph.c{left:134px;top:40px;transform:rotate(7deg)}
+.swipe{position:absolute;left:10px;top:262px;z-index:3;background:#ffd23f;color:var(--navy);font-weight:900;font-size:13px;padding:5px 14px;border-radius:99px}
+
+/* bridge */
+.bridge{display:flex;align-items:center;justify-content:center;gap:10px;margin:8px 0 -2px;font-weight:900;font-size:15px;color:#4b587f}
+.bridge:before,.bridge:after{content:"";height:2px;flex:1;background:#d9deea}
+.bridge span{color:var(--orange)}
+
+/* Lunch */
+.ln{margin-top:8px;border-radius:26px;background:var(--orange);color:#fff;padding:18px 26px 18px;display:flex;gap:16px;align-items:center;height:236px;padding-top:16px}
+.ln img.photo{width:220px;height:182px;object-fit:cover;border-radius:16px;flex:none}
+.ln .t{flex:1}
+.ln .lab{display:flex;align-items:center;gap:10px}
+.ln .lab img{width:54px;border-radius:12px;background:#fff;padding:2px}
+.ln .lab small{font-size:12px;font-weight:700}
+.ln h3{font-weight:900;font-size:25px;line-height:1.2;margin-top:2px}
+.ln ul{list-style:none;margin-top:6px;display:flex;flex-direction:column;gap:3px}
+.ln li{font-size:13.5px;font-weight:700;display:flex;gap:6px}
+.ln li:before{content:"✓";font-weight:900;color:#ffe9a8}
+.ln .nums{display:flex;gap:6px;margin-top:8px}
+.ln .nums div{flex:1;background:rgba(255,255,255,.2);border-radius:10px;text-align:center;padding:4px 2px}
+.ln .nums small{display:block;font-size:10px;font-weight:700}
+.ln .nums b{font-size:24px;font-weight:900;line-height:1.1}
+.ln .nums b u{text-decoration:none;font-size:12px}
+
+.note{font-size:9.5px;color:#8a93ad;margin-top:8px}
+.foot{position:absolute;left:44px;right:44px;bottom:20px;border-top:1.5px solid #e3e6ee;padding-top:12px;display:flex;justify-content:space-between;align-items:center}
+.brand{display:flex;align-items:center;gap:10px;font-weight:900;font-size:21px}
+.brand img{height:30px}
+.brand small{font-size:12px;font-weight:700;color:#5d6a92;border-left:1.5px solid #cfd4e2;padding-left:10px;line-height:1.35}
+.cta{display:flex;align-items:center;gap:12px;text-align:right}
+.cta b{display:block;font-size:15px;font-weight:900}
+.cta small{font-size:11px;color:#5d6a92;font-weight:700}
+.cta img{height:62px}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="top"><img src="assets/badge.png" alt=""><span class="pill">新卒採用ご担当者さまへ</span></div>
+  <h1>スキマ時間を、<br><em>出会い</em>のインフラに。</h1>
+  <p class="lead">知名度がなくても、学生に選ばれる機会をつくる。</p>
+
+  <section class="rl">
+    <div class="rl-tag"><img src="assets/realee.png" alt="Realee"><span>スワイプ就活</span></div>
+    <h2>求人票では伝わらない<b>“人”</b>を、<br>2分の動画で。</h2>
+    <p class="sub">就活生だけが見る、縦型の採用動画アプリ</p>
+    <div class="rl-body">
+      <div style="width:400px;flex:none">
+        <div class="pts">
+          <div class="pt"><i>1</i><div><b>社員・社長の“素顔”が届く</b><small>先輩インタビューや社長の素の姿を縦型動画で発信</small></div></div>
+          <div class="pt"><i>2</i><div><b>スワイプで、気軽に見てもらえる</b><small>就活生がスキマ時間に、2分でさくっと企業を知る</small></div></div>
+          <div class="pt"><i>3</i><div><b>気になったら、面談につながる</b><small>動画で共感した学生と、そのまま面談へ</small></div></div>
+        </div>
+        <div class="stats">
+          <div class="stat"><small>導入企業</small><b>40<u>社</u></b></div>
+          <div class="stat"><small>登録学生</small><b>3,110<u>人</u></b></div>
+          <div class="stat"><small>面談</small><b>212<u>件</u></b></div>
+        </div>
+      </div>
+      <div class="phones">
+        <div class="ph a"><img src="assets/v1.png" alt=""></div>
+        <div class="ph c"><img src="assets/v3.png" alt=""></div>
+        <div class="ph b"><img src="assets/v2.png" alt=""></div>
+        <div class="swipe">SWIPE ▶ 2分で“人”がわかる</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="bridge">動画で知って、<span>ランチで会う。</span></div>
+
+  <section class="ln">
+    <img class="photo" src="assets/lunch.png" alt="">
+    <div class="t">
+      <div class="lab"><img src="assets/lunchlogo.png" alt=""><small>カジュアルに深くつながる採用イベント</small></div>
+      <h3>説明会より、ランチで本音。</h3>
+      <ul>
+        <li>1社につき学生5名と、20分×2回の対話を確約</li>
+        <li>価値観診断で志向の合う学生と同じテーブルに</li>
+        <li>気になった学生に、後日面談オファーを送れる</li>
+      </ul>
+      <div class="nums">
+        <div><small>参加企業</small><b>23<u>社</u></b></div>
+        <div><small>参加学生</small><b>211<u>名</u></b></div>
+        <div><small>従業員500名未満</small><b>72<u>%</u></b></div>
+      </div>
+    </div>
+  </section>
+  <p class="note">※自社集計。就活ランチ：本社開催分のみ、2026年11月時点。Realee：2026年11月時点。　開催実績：京都産業大学・京都・和歌山／FC展開：静岡・群馬</p>
+
+  <div class="foot">
+    <div class="brand"><img src="assets/akikoma.png" alt="">株式会社AKiKOMA<small>Realee<br>株式会社リアリー</small></div>
+    <div class="cta"><div><b>ブースでお気軽にお声がけください</b><small>資料・日程予約はこちら →</small></div><img src="assets/qr.png" alt=""></div>
+  </div>
+</div>
+</body>
+</html>
